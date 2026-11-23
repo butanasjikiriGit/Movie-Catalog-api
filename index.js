@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // Routes
 const userRoutes = require('./routes/userRoutes.js');
@@ -11,6 +12,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
+app.use(cors());
 
 
 mongoose.connect("mongodb+srv://admin:admin1234@b645-butanas.kz5ezgh.mongodb.net/MovieCatalogSystem?appName=B645-Butanas");
