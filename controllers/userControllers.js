@@ -112,3 +112,32 @@ module.exports.loginUser = (req, res) => {
 	}
 
 }
+
+
+
+
+
+
+// get user details
+module.exports.userDetails = (req, res) => {
+
+	const userId = req.user.id;
+
+	return User.findById(userId)
+	.select('-password')
+	.then((result) => {
+		if (!result){
+			return res.status(400).send({
+				message: 'User does not exist'
+			})
+		} else {
+			return res.status(200).send(result);
+		}
+	})
+	.catch((err) => {
+		return res.status(500).send({
+			error: 'Internal Server Error'
+		})
+	})
+
+}
